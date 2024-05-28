@@ -114,10 +114,18 @@ class _PasswordFieldValidatorState extends State<PasswordFieldValidator> {
     super.initState();
     isFirstRun = true;
 
-    widget.controller.addListener(() {
-      isFirstRun = false;
-      validate();
-    });
+    widget.controller.addListener(_textControllerListener);
+  }
+
+  void _textControllerListener() {
+    isFirstRun = false;
+    validate();
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_textControllerListener);
+    super.dispose();
   }
 
   @override
