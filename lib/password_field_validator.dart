@@ -100,7 +100,9 @@ class _PasswordFieldValidatorState extends State<PasswordFieldValidator> {
       );
     }
 
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
 
     if (_selectedCondition.values.every((condition) => condition)) {
       widget.onValid?.call();
